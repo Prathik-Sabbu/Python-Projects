@@ -1,0 +1,9 @@
+years = input("how many years do you need to pay:")
+loan = input("how much did you barrow:")
+apr = input("what is your APR percentage:")
+total=0
+loan = int(loan)
+apr = int(apr)
+for total in range(int(years)):
+  loan = (loan * (apr/100))+loan
+print(loan)
