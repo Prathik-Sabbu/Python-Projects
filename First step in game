@@ -1,0 +1,13 @@
+print('you enter a forest and see a cave, do you eneter?')
+cave = input("> ")
+while cave == "yes":
+  print("you run into the cave and meet a cross section, do you go left or right?")
+  cross = input("> ")
+  if cross =="right":
+    print("you go down and find th treasure, yay!!!")
+    break
+  elif cross == "left":
+   continue
+if cave =="no":
+  print("you run of into the forest never to be seen again")
+  exit()
