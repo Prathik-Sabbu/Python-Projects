@@ -1,0 +1,49 @@
+import getpass as imput
+import random
+p=input("do you want to play one player or two player: ").casefold()
+if p == "one player":
+  first = input("pick rock paper or scissors: ").upper()
+  list = ["ROCK","PAPER","SCISSORS"]
+  computer = random.choice(list)
+  print("computer chose", computer.lower())
+  if (first == "R" or first == "ROCK") and (computer == "S" or computer == "SCISSORS"):
+    print("First wins!!!")
+  elif (first == "R" or first == "ROCK") and (computer == "R" or computer == "ROCK"):
+    print("Tie Round!!!")
+  elif (first == "R" or first == "ROCK") and (computer == "P" or computer == "PAPER"):
+    print("Second Wins!!!")
+  elif (first == "S" or first == "SCISSORS") and (computer == "R" or computer == "ROCK"):
+    print("Second Wins!!!")
+  elif (first == "S" or first == "SCISSORS") and (computer == "S" or computer == "SCISSORS"):
+    print("Tie Round!!!")
+  elif (first == "S" or first == "SCISSORS") and (computer == "P" or computer == "PAPER"):
+    print("First Wins!!!")
+  elif (first == "P" or first == "PAPER") and (computer == "R" or computer == "ROCK"):
+    print("First Wins!!!")
+  elif (first == "P" or first == "PAPER") and (computer == "P" or computer == "PAPER"):
+    print("Tie Round!!!")
+  elif (first == "P" or first == "PAPER") and (computer == "S" or computer == "SCISSORS"):
+    print("Second Wins!!!")
+elif p == "two player":
+  first = imput.getpass("pick rock paper scissors for player 1: ")
+  computer = imput.getpass("pick rock paper scissors for player 2: ")
+  first = first.upper()
+  computer = computer.upper()
+  if (first == "R" or first == "ROCK") and (computer == "S" or computer == "SCISSORS"):
+    print("First wins!!!")
+  elif (first == "R" or first == "ROCK") and (computer == "R" or computer == "ROCK"):
+    print("Tie Round!!!")
+  elif (first == "R" or first == "ROCK") and (computer == "P" or computer == "PAPER"):
+    print("Second Wins!!!")
+  elif (first == "S" or first == "SCISSORS") and (computer == "R" or computer == "ROCK"):
+    print("Second Wins!!!")
+  elif (first == "S" or first == "SCISSORS") and (computer == "S" or computer == "SCISSORS"):
+    print("Tie Round!!!")
+  elif (first == "S" or first == "SCISSORS") and (computer == "P" or computer == "PAPER"):
+    print("First Wins!!!")
+  elif (first == "P" or first == "PAPER") and (computer == "R" or computer == "ROCK"):
+    print("First Wins!!!")
+  elif (first == "P" or first == "PAPER") and (computer == "P" or computer == "PAPER"):
+    print("Tie Round!!!")
+  elif (first == "P" or first == "PAPER") and (computer == "S" or computer == "SCISSORS"):
+    print("Second Wins!!!")
