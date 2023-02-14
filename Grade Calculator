@@ -1,0 +1,15 @@
+test = input("what test did you take: ")
+total_points = input("what is the highst grade you could have gotten: ")
+given_points = input("what is the total points you got: ")
+if (int(given_points) / int(total_points))*100 > 89:
+  print("god job, you got an A+ and a", (int(given_points) / int(total_points))*100, "in", test)
+elif (int(given_points) / int(total_points))*100 > 79 and (int(given_points) / int(total_points))*100 < 90:
+  print("god job, you got an A and a",   (int(given_points) / int(total_points))*100, "in", test)
+elif (int(given_points) / int(total_points))*100 >69  and (int(given_points) / int(total_points))*100 < 80:
+  print("alright job, you got a b and a",   (int(given_points) / int(total_points))*100,"do better next time in", test)
+elif (int(given_points) / int(total_points))*100 > 59 and (int(given_points) / int(total_points))*100 < 70:
+  print("horrible job, you got a c and a",   (int(given_points) / int(total_points))*100, "you need to work on that in", test)
+elif (int(given_points) / int(total_points))*100 > 49 and (int(given_points) / int(total_points))*100 < 60:
+  print("horrible just horrible, you got a D and a",   (int(given_points) / int(total_points))*100, "you really need to study in", test)
+elif (int(given_points) / int(total_points))*100 < 50:
+  print("what is wronge with you, you got a U and a",   (int(given_points) / int(total_points))*100, "do you belong on the short bus, You NEED to study in", test)
