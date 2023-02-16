@@ -1,0 +1,33 @@
+import re
+print("what table do you want to learn")
+table = input("> ")
+numeric = table.isnumeric()
+while numeric == False:
+  print("not a number")
+  table = input("> ")
+  numeric = table.isnumeric()
+table = int(table)
+print("what range do you want to multiply by your table: ")
+multiples = input("> ")
+numeric = multiples.isnumeric()
+while numeric == False:
+  print("not a number")
+  multiples = input("> ")
+  numeric = multiples.isnumeric()
+multiples = re.split(",|-|, | |;", multiples)
+multiples = list(map(int, multiples))
+start = multiples [0]
+end = multiples [1]
+x = 0
+z = int(start)
+for i in range(start, (end+1)):
+  print("what is", z, "X", table)
+  awnser = int(input("> "))
+  if awnser == z * table:
+    print("correct :)")
+    x += 1
+  else:
+    print("wronge :(")
+  z += 1
+y=(z-1)
+print("you got", x, "out of", y)
