@@ -15,7 +15,7 @@ while guess != computer_number:
   guess = int(guess)
   close = math.isclose(guess,computer_number, abs_tol = 1000)
   if int(guess) > computer_number:
-    print("\u001b[37m your guess was to high")
+    print("\u001b[37m your guess was too high")
     if close is True:
       print("\u001b[32m you are close though")
     elif close is False:
