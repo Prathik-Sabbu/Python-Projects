@@ -21,7 +21,7 @@ while guess != computer_number:
     elif close is False:
       print("\u001b[31myour not close at all")
   elif int(guess) < computer_number:
-    print("\u001b[37m your guess was to low")
+    print("\u001b[37m your guess was too low")
     if close is True:
       print("\u001b[32m you are close though \n")
     elif close is False:
