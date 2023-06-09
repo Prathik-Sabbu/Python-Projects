@@ -1,0 +1,175 @@
+import time
+import random
+import tkinter as tk
+import sys
+first_temple_pathway = ""
+number = ""
+class_type = ""
+sides = ""
+end = ""
+playerhealth = 1
+def entrence (end):
+  if dark_pathway_player_choice != end:
+    delay_print("you go through the door and find a pathway which way do you go",0.01)
+    dark_pathway = input(">")
+    if dark_pathway != end:
+      entrence(end)
+def infinatedice(sides):
+          number = random.randrange(sides)
+          print("you roled a",number)
+def player_health(dmg):
+  global playerhealth
+  playerhealth = dmg - playerhealth
+  if playerhealth <= 0:
+    print("you have died , restart the game")
+    exit()
+def delay_print(s,x):
+    for c in s:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        #time.sleep(x)
+    print()
+def attack_type(damage, sides):
+  if number > sides*0.75:
+    print("you do critical damage, and hit,", damage * 2)
+  if number > sides * 0.25 and number < 0.75 * sides:
+    print("you hit the opponent, and you do", damage)
+  if number < sides * 0.25:
+    print("you do a very weak attack, and only do", damage * 0.5)
+delay_print('hello player, welcome to the ancient world of alistaria',0.1)
+delay_print("WAIT? what this isn't the world that I remember",0.15)
+delay_print("it's dangoures scary and deadly, travel safe and save the world hero",0.1)
+delay_print("wait what is your name? hero",0.1)
+name_of_hero = input(">")
+delay_print(("good luck ",name_of_hero),0.1)
+delay_print("before we start this game we need to pick your class",0.01)
+delay_print("wich class do you want to be.",0.01)
+class_player = tk.Tk()
+def warrior():
+  class_type = "warrior"
+  print(class_type)
+  playerhealth = 100
+#health = 100 streangth = 60 
+def mage():
+  class_type = "mage"
+  print(class_type)
+  playerhealth = 50
+#health = 50 streangth = 80 
+def tank():
+  class_type = "tank"
+  print(class_type)
+  playerhealth = 250
+#health = 250 streangth = 30 
+def summoner():
+  class_type = "summoner"
+  print(class_type)
+  playerhealth = 75
+# health = 75 streangth = 70 
+warrior = tk.Button(class_player, text="warrior", command=warrior)
+mage = tk.Button(class_player, text="mage", command=mage)
+tank = tk.Button(class_player, text="tank", command=tank)
+summoner = tk.Button(class_player, text="summoner", command=summoner)
+def Close():
+    class_player.destroy()
+exit_button = tk.Button(class_player, text="enter", command=Close)
+exit_button.pack(pady=20)
+warrior.pack()
+mage.pack()
+tank.pack()
+summoner.pack()
+class_player.mainloop()
+delay_print("...",0.75)
+def first_pathway():
+  global first_temple_pathway
+  first_temple_pathway = input(">")
+  first_temple_pathway =first_temple_pathway.upper()
+  if first_temple_pathway == "DARK":
+    delay_print("you find a torch and go down the dark steps",0.001)
+  if first_temple_pathway == "LIGHT":
+    delay_print("you exit the temple and see the forest around you as you hear the animals around you",0.01)
+
+    first_temple_pathway = input(">")
+
+    #code starts now
+    first_pathway()
+    first_temple_pathway= input(">")
+delay_print("you wake up in a dark temple, you look around, and see a light, and a dark door wich way do you go?",0.001)
+
+#process starts here
+first_pathway()
+if first_temple_pathway.upper() == "LIGHT":
+  delay_print("you travel throught the forrest, but you cant seem to get anywhere. You keep wondering around, until you find a chest do you open it?",0.001)
+  chest = input(">")
+  if chest.upper() == "YES":
+    delay_print("you open the chest and you see a lot of gold you dig throught the pile thinking your rich, but suddenly you feel some sludge. thinking it is weird you dig deeper, and something lunges at you, and lands behind you. you turn around and see the sludge monster as it grows bigger and bigger. do you fight or run.",0.001)
+    desition1 = input(">")
+    if desition1.upper() == "RUN":
+      delay_print("you try to run away, but the slime monster is much faster and engulfs you in its body. unable to get out you drown. ", 0.01)
+      sys.exit()
+    if desition1.upper() == "FIGHT":
+      delay_print("you ready your posture to try and fight the slime monster", 0.01)
+      delay_print("you roll the dice",0.01)
+      infinatedice(6)
+      if class_type == "warrior":
+          delay_print('you attack him with your fists',0.01)
+          attack_type(60,6)
+          if number > sides*0.75:
+            delay_print("you hit the slime and kill it",0.01)
+          if number > sides * 0.25 and number < 0.75 * sides:
+            delay_print("you hit the slime, but it also has 60 health left. not killing the slime he hits you with 20 dmg", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(60,6)
+          if number < sides * 0.25:
+            print("you do very little to the slime, and the slime has 90 health left, and does 20 dmg to you", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(60,6)
+      if class_type == "mage":
+          delay_print('you attack him with simple magic',0.01)
+          attack_type(80,6)
+          if number > sides*0.75:
+            delay_print("you zapped the slime and killed it",0.01)
+          if number > sides * 0.25 and number < 0.75 * sides:
+            delay_print("you zapped the slime, but it also has 40 health left. not killing the slime he hits you with 20 dmg", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(80,6)
+          if number < sides * 0.25:
+            print("you do very little to the slime, and the slime has 80 health left, and does 20 dmg to you", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(80,6)
+      if class_type == "tank":
+          delay_print('you attack him with your fists',0.01)
+          attack_type(30,6)
+          if number > sides*0.75:
+            delay_print("you hit the slime and do 60dmg the slime has 60 left",0.01)
+          if number > sides * 0.25 and number < 0.75 * sides:
+            delay_print("you hit the slime, but it also has 90 health left. not killing the slime he hits you with 20 dmg", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(30,6)
+          if number < sides * 0.25:
+            print("you do very little to the slime, and the slime has 115 health left, and does 20 dmg to you", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(30,6)
+      if class_type == "summoner":
+          delay_print('you attack him by summoning a monster',0.01)
+          attack_type(70,6)
+          if number > sides*0.75:
+            delay_print("you summon a goblin giant and kill the slime",0.01)
+          if number > sides * 0.25 and number < 0.75 * sides:
+            delay_print("you summon a wolf and attack the slime, but the slime but the slime has 50 health left. not killing the slime he kills the wolf and hits you with 20 dmg", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(70,6)
+          if number < sides * 0.25:
+            print("you summon a sheep and do very little to the slime, the slime has 75 health left, and eats the sheep and does 20 dmg to you", 0.01)
+            player_health(20)
+            infinatedice(6)
+            attack_type(70,6)
+      delay_print("after defeating the slime you continue",0.01)
+  if chest.upper() == "YES" or 'NO':
+    print("you continue on your journy, and find your self at the end of the forest, you decide to step outside and venture towords a village that is nearby.")
