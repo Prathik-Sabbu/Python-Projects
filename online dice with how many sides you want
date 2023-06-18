@@ -1,0 +1,11 @@
+import random
+def infinatedice(sides):
+  number = random.randrange(sides)
+  print(number)
+
+sides = int(input("pick number of sides for your dice: "))
+infinatedice(sides)
+again = input("do you want to roll again: ")
+while again.upper() == "YES":
+  infinatedice(sides)
+  again = input("do you want to roll again: ")
