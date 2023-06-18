@@ -1,0 +1,16 @@
+if __name__ == '__main__':
+    n = int(input())
+    arr = map(int, input().split())
+s = []
+d=float('-inf')
+t=float('-inf')
+for x in arr:
+   s.append(x)
+for y in s:
+    if d < y:
+        d=y
+s[:] = (value for value in s if value != d)
+for l in s:
+    if t < l:
+        t=l
+print(t)
