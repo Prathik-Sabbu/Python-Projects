@@ -1,0 +1,25 @@
+s = []
+g=[]
+k=[]
+if __name__ == '__main__':
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        s.append(score)
+        g.append(score)
+        g.append(name)
+i = float('inf')
+for n in s:
+    if i > float(n):
+        i = float(n)
+s[:] = (value for value in s if value != i)
+i = float('inf')
+for t in s:
+    if i >t:
+        i = t
+while g.__contains__(i)== True:
+    k.append(g[g.index(i)+1])
+    g.remove(g[g.index(i)])
+    k.sort()
+for l in k:
+    print(l)
