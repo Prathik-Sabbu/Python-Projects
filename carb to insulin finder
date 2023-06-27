@@ -1,0 +1,75 @@
+import requests
+ratio = int(input('how many carbs is 1 unit of insulin: '))
+num_of_food = int(input('How many food choices do you want to track: '))
+api_key = 'h9bZvnhJ6tQiD267JbRymO5wqHzHGlziElJANR3E'
+food_total = []
+carb_total = []
+carb_result = 0
+ins_result = 0 
+total_ins = []
+table =[]
+for i in range(num_of_food):
+    food = input(f'Add food choice {i+1} (the more descriptive the better): ')
+    grams = int(input('How many grams of the food are you eating: '))
+    food_total.append({'food': food, 'grams': grams})
+
+for t in food_total:
+  food_choice = t['food']
+  gram = t['grams']
+  url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key={api_key}&query={food_choice}'
+  response = requests.get(url)
+  data = response.json()
+
+  if 'foods' in data:
+      for food_source in data['foods']:
+          if food_source['dataType'] == 'Foundation':
+              if 'foodNutrients' in food_source:
+                  nutrients = food_source['foodNutrients']
+                  for nutrient in nutrients:
+                      if nutrient['nutrientName'] == "Carbohydrate, by difference":
+                          carb_per_100g = float(nutrient['value'])
+                          carb = round(float(carb_per_100g/100) * gram,4)
+                          carb_total.append(carb)
+                          break
+              break
+
+      else:  
+          for food_source in data['foods']:
+              if food_source['dataType'] == 'Survey (FNDDS)':
+                  if 'foodNutrients' in food_source:
+                      nutrients = food_source['foodNutrients']
+                      for nutrient in nutrients:
+                          if nutrient['nutrientName'] == "Carbohydrate, by difference":
+                              carb_per_100g = float(nutrient['value'])
+                              carb = round(float(carb_per_100g/100) * gram,4)
+                              carb_total.append(carb)
+                              break
+                  break
+
+          else:  
+              for food_source in data['foods']:
+                  if food_source['dataType'] == 'Branded':
+                      if 'foodNutrients' in food_source:
+                          nutrients = food_source['foodNutrients']
+                          for nutrient in nutrients:
+                              if nutrient['nutrientName'] == "Carbohydrate, by difference":
+                                  carb_per_100g = float(nutrient['value'])
+                                  carb = round(float(carb_per_100g/100) * gram,4)
+                                  carb_total.append(carb)
+                                  break
+                      break      
+  ins = round(carb/ratio,4)
+  total_ins.append(ins)
+  table.append([food_choice, gram, carb, ins])
+for i in total_ins:
+  ins_result += (i)
+for i in carb_total:
+  carb_result += round(float(i),4)
+ins_result = round(ins_result,4)
+print('\nfood\t grams\t carbs\t insalin needed')
+print('--------------------------------------')
+for i in table:
+  print(f'{i[0]}\t {i[1]}\t {i[2]}\t {i[3]}')
+  print('\n')
+print(f'total carbs is {carb_result}')
+print(f'total insulin is {ins_result}')
