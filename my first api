@@ -1,0 +1,32 @@
+import pandas as pd
+from flask import Flask, jsonify, request
+
+plant_data = pd.read_csv("where your csv file destination is")
+plant_data = plant_data.fillna(-1)
+
+app = Flask(__name__)
+
+
+@app.route('/plants', methods=['GET'])
+def plant():
+    if len(request.args) == 0:
+        return jsonify(plant_data.to_dict(orient='records'))
+    else:
+        query_needs = request.args.get('q')
+        temp = request.args.get('temp', type=int)
+        if query_needs:
+            if temp:
+                plants = plant_data.loc[(plant_data['plant'] == query_needs) & (plant_data['min'] <= temp)
+                                        & (plant_data['max'] >= temp)]
+            else:
+                plants = plant_data.loc[plant_data['plant'] == query_needs]
+            if not plants.empty:
+                return jsonify(plants.to_dict(orient='records'))
+            else:
+                return jsonify({'error': 'Plant not found'})
+        else:
+            return jsonify({'error': 'Invalid query parameter'})
+
+
+if __name__ == '__main__':
+    app.run(port=5000)
