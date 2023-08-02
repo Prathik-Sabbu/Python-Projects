@@ -1,7 +1,7 @@
 import requests
 
 def api_info(food_choice,gram):
-  api_key = 'h9bZvnhJ6tQiD267JbRymO5wqHzHGlziElJANR3E'
+  api_key = 'api-key'
   url = f'https://api.nal.usda.gov/fdc/v1/foods/search?api_key={api_key}&query={food_choice}'
   response = requests.get(url)
   data = response.json()
