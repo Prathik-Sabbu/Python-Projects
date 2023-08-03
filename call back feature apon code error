@@ -1,0 +1,28 @@
+from twilio.rest import Client
+
+
+def make_phone_call(account_sid, auth_token, from_number, to_number, error_message):
+    client = Client(account_sid, auth_token)
+
+    try:
+      # Perform the task here
+      # example code Simulate an error for demonstration purposes
+      x+3
+    except Exception as e:
+        client.calls.create(
+            twiml='<Response><Say>{}</Say></Response>'.format(error_message),
+            from_=from_number,
+            to=to_number
+        )
+        print("Phone call initiated!")
+
+        print("Error occurred:", str(e))
+
+account_sid = "Your account_sid"
+auth_token = "your Auth_token"
+from_number = "your from number"
+to_number = "your to number"
+error_message = "An error occurred during the task. Please check the logs for more details."
+
+make_phone_call(account_sid, auth_token, from_number, to_number, error_message)
+
