@@ -5,13 +5,13 @@ guess = computer_number - 10
 number_of_guesses = 0
 while guess != computer_number:
   print("\u001b[37m guess a number")
-  number_of_guesses += 1
   guess = input("> ")
   numeric = guess.isnumeric()
   while numeric == False:
     print("\u001b[37m not a number")
     guess = input("> ")
     numeric = guess.isnumeric()
+  number_of_guesses += 1
   guess = int(guess)
   close = math.isclose(guess,computer_number, abs_tol = 1000)
   if int(guess) > computer_number:
