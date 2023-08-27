@@ -17,7 +17,7 @@ def plant():
             return jsonify(plant_data.to_dict(orient='records'))
         else:
             query_needs = request.args.get('q')
-            temp = request.args.get('temp', type=int)
+            temp = request.args.get('temp', type=float)
             if query_needs:
                 if temp:
                     plants = plant_data.loc[(plant_data['plant'] == query_needs) & (plant_data['min'] <= temp)
