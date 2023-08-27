@@ -1,23 +1,44 @@
 import requests
 
-api_key = 'YOUR API KEY'
+api_key = '413f8520b4704d0b9e4211306232206'
+key = "175925720130125762435101263585"
+total_rain = 0
+water = 0
 
-url = f'http://api.weatherapi.com/v1/forecast.json?key={api_key}&q=Henrico,America&days=7'
+def weather():
+    water_data_url = f'http://api.weatherapi.com/v1/forecast.json?key={api_key}&q=Henrico,America,va&days=1'
+    print(water_data_url)
+    global total_rain
+    global temp
+    try:
+        data = requests.get(water_data_url)
+        data.raise_for_status()
 
-try:
-  data = requests.get(url)
-  data.raise_for_status()
-  
-  forcast_data = data.json()
-  
-  forcasts= forcast_data['forecast']['forecastday']
-  
-  for f in forcasts:
-    date = f['date']
-    temp = f['day']['avgtemp_f']
-    rain_chance = f['day']['daily_chance_of_rain']
-    total_rain = f['day']['totalprecip_mm']
-    print(f'on {date}\ntempreture is: {temp}\nchance or rain is: {rain_chance}\ntotal rain is: {total_rain}')
-    print('\n')
-except requests.exceptions.RequestException as e:
-  print(f'their is an error at {e}')
+        forcast_data = data.json()
+
+        forcasts = forcast_data['forecast']['forecastday']
+
+        for f in forcasts:
+            date = f['date']
+            temp = f['day']['avgtemp_f']
+            rain_chance = f['day']['daily_chance_of_rain']
+            total_rain = f['day']['totalprecip_in']
+
+    except requests.exceptions.RequestException as e:
+        print(f'their is an error at {e}')
+
+
+def plant(query,temp, area):
+    global water
+    global plant_pot_area
+    plant_pot_area = area
+    plant_data_url = f'http://127.0.0.1:5000/plants?key={key}&q={query}&temp={temp}'
+    plant_data = requests.get(plant_data_url).json()
+    water = plant_data[0]["water"]
+
+
+
+weather()
+plant("tomato",temp,"your area of the watering location")
+ml_of_water = float(total_rain) * float(plant_pot_area)
+print(f'{water - volume} ml')
